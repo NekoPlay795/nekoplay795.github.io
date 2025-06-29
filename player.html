@@ -26,14 +26,14 @@
       document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:30%'>Ошибка: ссылка отсутствует или недействительна</h2>";
     } else {
       try {
-        // Добавляем https: если указано //kodik.info/...
+
         const cleanLink = rawLink.startsWith("//") ? "https:" + rawLink : rawLink;
 
-        // Добавляем параметр from=nekoplay.byethost24.com
-        const url = new URL(cleanLink);
-        url.searchParams.set("from", "nekoplay.byethost24.com");
 
-        // Вставляем iframe
+        const url = new URL(cleanLink);
+        url.searchParams.set("from", "nekoplay795.github.io");
+
+
         document.write(`<iframe src="${url.href}" allowfullscreen allow="autoplay *; fullscreen *"></iframe>`);
       } catch (e) {
         document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:30%'>Ошибка: неверная ссылка</h2>";
