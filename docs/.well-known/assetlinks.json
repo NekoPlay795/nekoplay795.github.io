@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "daddysapps.nekoplay.nekoplay",
+      "sha256_cert_fingerprints": [
+        "D0:5B:1D:BD:C1:D2:EB:5F:79:3F:7F:C9:E3:A1:F5:EA:3A:7A:11:4B:9E:FE:FF:81:55:51:D7:56:2D:F3:4E:BB"
+      ]
+    }
+  }
+]
