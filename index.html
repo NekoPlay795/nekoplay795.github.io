@@ -1,16 +1,33 @@
 <script>
-  const deepLinkPath = sessionStorage.getItem("deepLinkPath");
-  if (deepLinkPath) {
-    console.log("Deep link path:", deepLinkPath);
+  (function() {
+    // Определяем userAgent
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /android/i.test(ua);
 
-    // Очистим, чтобы не срабатывало при обычной загрузке
-    sessionStorage.removeItem("deepLinkPath");
+    // Проверяем, откуда пришли (deepLinkPath мы кладём в sessionStorage через 404.html)
+    const deepLinkPath = sessionStorage.getItem("deepLinkPath");
 
-    // Здесь ты решаешь, что делать:
-    // 👉 Например, перенаправить пользователя внутри SPA:
-    // window.location.href = "/#"+deepLinkPath;
+    if (isAndroid) {
+      // Формируем intent-ссылку для открытия приложения
+      const packageName = "daddysapps.nekoplay.nekoplay";
+      const intentUrl = "intent://" + (deepLinkPath ? deepLinkPath.replace(/^\//, "") : "") +
+        "#Intent;scheme=https;package=" + packageName + ";end";
 
-    // 👉 Или вызвать твой JS-код, который откроет страницу аниме
-    openAnimeByPath(deepLinkPath);
-  }
+      // Пробуем открыть приложение
+      window.location = intentUrl;
+
+      // Если не установлено → через таймаут редиректим в Google Play
+      setTimeout(function() {
+        window.location = "https://play.google.com/store/apps/details?id=" + packageName;
+      }, 1500);
+    } else {
+      // Для десктопа или iOS можешь просто показать сайт или сообщение
+      console.log("Открыто не с Android, fallback в веб-версию");
+    }
+
+    // Очистим deepLinkPath, чтобы не срабатывало повторно
+    if (deepLinkPath) {
+      sessionStorage.removeItem("deepLinkPath");
+    }
+  })();
 </script>
