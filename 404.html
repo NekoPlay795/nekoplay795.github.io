@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
-  <script>
-    // Берем путь из URL, например /kodik.info/serial/...
-    const path = window.location.pathname + window.location.search + window.location.hash;
-
-    // Сохраняем его в sessionStorage (чтобы index.html мог достать)
-    sessionStorage.setItem("deepLinkPath", path);
-
-    // Перенаправляем на index.html
-    window.location.replace("/");
-  </script>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <p>Переход...</p>
+  <script>
+    (function() {
+      // получаем путь после https://nekoplay795.github.io/
+      const path = window.location.pathname;
+
+      // сохраняем в sessionStorage и перекидываем на index.html
+      sessionStorage.setItem("deepLinkPath", path);
+      window.location.replace("/");
+    })();
+  </script>
 </body>
 </html>
