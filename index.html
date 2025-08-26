@@ -1,0 +1,16 @@
+<script>
+  const deepLinkPath = sessionStorage.getItem("deepLinkPath");
+  if (deepLinkPath) {
+    console.log("Deep link path:", deepLinkPath);
+
+    // Очистим, чтобы не срабатывало при обычной загрузке
+    sessionStorage.removeItem("deepLinkPath");
+
+    // Здесь ты решаешь, что делать:
+    // 👉 Например, перенаправить пользователя внутри SPA:
+    // window.location.href = "/#"+deepLinkPath;
+
+    // 👉 Или вызвать твой JS-код, который откроет страницу аниме
+    openAnimeByPath(deepLinkPath);
+  }
+</script>
