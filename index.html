@@ -1,45 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NekoPlay</title>
+    <meta charset="UTF-8">
+    <title>NekoPlay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Добро пожаловать в NekoPlay</h1>
-  <p>Если у вас Android — сейчас откроется приложение или страница в Google Play.</p>
-
-  <script>
-    (function() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      const isAndroid = /android/i.test(ua);
-
-      // достаем сохранённый путь из 404.html
-      const deepLinkPath = sessionStorage.getItem("deepLinkPath");
-      const packageName = "daddysapps.nekoplay.nekoplay";
-
-      if (isAndroid) {
-        // intent:// для открытия приложения
-        const intentUrl = "intent://" +
-          (deepLinkPath ? deepLinkPath.replace(/^\//, "") : "") +
-          "#Intent;scheme=https;package=" + packageName + ";end";
-
-        // пробуем открыть приложение
-        window.location = intentUrl;
-
-        // fallback в Google Play если не установлено
-        setTimeout(function() {
-          window.location = "https://play.google.com/store/apps/details?id=" + packageName;
-        }, 1500);
-      } else {
-        // Десктоп/ios → просто оставляем страницу
-        console.log("Не Android — открыта веб-версия");
-      }
-
-      if (deepLinkPath) {
-        sessionStorage.removeItem("deepLinkPath");
-      }
-    })();
-  </script>
+    <h1>Добро пожаловать на NekoPlay</h1>
+    <p>Для просмотра аниме используйте приложение.</p>
+    <p><a href="https://play.google.com/store/apps/details?id=daddysapps.nekoplay.nekoplay">Скачать приложение</a></p>
 </body>
 </html>

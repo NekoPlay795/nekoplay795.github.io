@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <title>Откройте в приложении</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Редирект на Google Play через 2 секунды -->
+    <meta http-equiv="refresh" content="2; url=https://play.google.com/store/apps/details?id=daddysapps.nekoplay.nekoplay">
 </head>
 <body>
-  <p>Переход...</p>
-  <script>
-    (function() {
-      // получаем путь после https://nekoplay795.github.io/
-      const path = window.location.pathname;
-
-      // сохраняем в sessionStorage и перекидываем на index.html
-      sessionStorage.setItem("deepLinkPath", path);
-      window.location.replace("/");
-    })();
-  </script>
+    <h1>Откройте это аниме в приложении NekoPlay</h1>
+    <p>Если приложение не установлено, вы будете перенаправлены на Google Play через несколько секунд.</p>
+    <p>Или нажмите <a href="https://play.google.com/store/apps/details?id=daddysapps.nekoplay.nekoplay">сюда</a> прямо сейчас.</p>
 </body>
 </html>
