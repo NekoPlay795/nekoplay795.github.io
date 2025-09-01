@@ -4,9 +4,8 @@
     "target": {
       "namespace": "android_app",
       "package_name": "daddysapps.nekoplay.nekoplay",
-      "sha256_cert_fingerprints": [
-        "67:1F:10:E7:6F:84:10:BC:F2:40:7C:71:44:C3:44:F9:49:0B:CF:F6:86:20:F3:33:8A:5A:D5:A2:51:96:D2:43"
-      ]
+      "sha256_cert_fingerprints":
+        ["67:1F:10:E7:6F:84:10:BC:F2:40:7C:71:44:C3:44:F9:49:0B:CF:F6:86:20:F3:33:8A:5A:D5:A2:51:96:D2:43"]
     }
   }
 ]
