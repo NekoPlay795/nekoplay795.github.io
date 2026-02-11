@@ -1,46 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Kodik плеер</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-  
+<meta charset="UTF-8">
+<title>Kodik плеер</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden; /* полностью отключаем скролл */
+  }
+
+  #playerFrame {
+    position: fixed;  /* фиксируем к экрану */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
+
+  .error {
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
 </head>
+
 <body>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const rawLink = params.get("link");
 
-    if (!rawLink || !rawLink.includes("kodik.info")) {
-      document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:30%'>Ошибка: ссылка отсутствует или недействительна</h2>";
-    } else {
-      try {
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const rawLink = params.get("link");
 
-        const cleanLink = rawLink.startsWith("//") ? "https:" + rawLink : rawLink;
+  function showError(message) {
+    const error = document.createElement("h2");
+    error.className = "error";
+    error.textContent = message;
+    document.body.appendChild(error);
+  }
 
+  if (!rawLink || !rawLink.includes("kodik.info")) {
+    showError("Ошибка: ссылка отсутствует или недействительна");
+  } else {
+    try {
 
-        const url = new URL(cleanLink);
-        url.searchParams.set("from", "nekoplay795.github.io");
+      const cleanLink = rawLink.startsWith("//")
+        ? "https:" + rawLink
+        : rawLink;
 
+      const url = new URL(cleanLink);
+      url.searchParams.set("from", "nekoplay795.github.io");
 
-        document.write(`<iframe src="${url.href}" allowfullscreen allow="autoplay *; fullscreen *"></iframe>`);
-      } catch (e) {
-        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:30%'>Ошибка: неверная ссылка</h2>";
+      const iframe = document.createElement("iframe");
+      iframe.id = "playerFrame";
+      iframe.src = url.href;
+      iframe.allow = "autoplay *; fullscreen *";
+      iframe.allowFullscreen = true;
+
+      document.body.appendChild(iframe);
+
+      // Дополнительная защита от микроскролла в WebView
+      function fixHeight() {
+        document.documentElement.style.height = window.innerHeight + "px";
+        document.body.style.height = window.innerHeight + "px";
       }
+
+      fixHeight();
+      window.addEventListener("resize", fixHeight);
+
+    } catch (e) {
+      showError("Ошибка: неверная ссылка");
     }
-  </script>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2eca2df4e9a74c0c86260c225757e0d6"}'></script><!-- End Cloudflare Web Analytics -->
+  }
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "2eca2df4e9a74c0c86260c225757e0d6"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
